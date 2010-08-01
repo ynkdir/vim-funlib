@@ -472,7 +472,7 @@ function! s:SHA1PadMessage(context, Pad_Byte)
     let a:context.Message_Block[a:context.Message_Block_Index] = a:Pad_Byte
     let a:context.Message_Block_Index += 1
     while a:context.Message_Block_Index < s:SHA1_Message_Block_Size
-      let a:context.Message_Block[a:context.Message_Block] = 0
+      let a:context.Message_Block[a:context.Message_Block_Index] = 0
       let a:context.Message_Block_Index += 1
     endwhile
     call s:SHA1ProcessMessageBlock(a:context)
