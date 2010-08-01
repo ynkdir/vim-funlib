@@ -7,3 +7,6 @@ build-rfc1321:
 build-rfc4634:
 	cd rfc4634 && $(MAKE)
 
+push:
+	git push origin master
+
