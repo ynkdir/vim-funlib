@@ -59,7 +59,7 @@ function s:md5.digest()
 endfunction
 
 function s:md5.hexdigest()
-  return s:bytes2hex(self.digest())
+  return bytes#bytes2hex(self.digest())
 endfunction
 
 function s:md5.copy()
