@@ -180,7 +180,7 @@ let s:SHA1Context = {
 let s:SHA256Context = {
       \ "Intermediate_Hash": repeat([0], s:SHA256HashSize / 4),
       \ "Length_Low": 0,
-      \ "Length_High": 1,
+      \ "Length_High": 0,
       \ "Message_Block_Index": 0,
       \ "Message_Block": repeat([0], s:SHA256_Message_Block_Size),
       \ "Computed": 0,

@@ -1,7 +1,7 @@
 " This is a port of rfc2104 hmac function.
 " [HMAC: Keyed-Hashing for Message Authentication]
 " http://www.ietf.org/rfc/rfc2104.txt
-" Last Change:  2010-08-01
+" Last Change:  2010-08-02
 " Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
 " License:      This file is placed in the public domain.
 
@@ -22,11 +22,11 @@ function hmac#sha256(key, text)
 endfunction
 
 function hmac#sha384(key, text)
-  return hmac#new(a:key, a:text, function('hashlib#sha384#new')).hexdigest()
+  return hmac#new(a:key, a:text, function('hashlib#sha384#new'), 128).hexdigest()
 endfunction
 
 function hmac#sha512(key, text)
-  return hmac#new(a:key, a:text, function('hashlib#sha512#new')).hexdigest()
+  return hmac#new(a:key, a:text, function('hashlib#sha512#new'), 128).hexdigest()
 endfunction
 
 function hmac#new(...)

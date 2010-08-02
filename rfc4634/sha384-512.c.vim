@@ -177,7 +177,7 @@ function! s:SHA512_ADDTO4(word1, idx1, word2, idx2)
   let a:word1[a:idx1 + 3] += a:word2[a:idx2 + 3]
   let ADDTO4_temp2 = a:word1[a:idx1 + 2]
   let a:word1[a:idx1 + 2] += a:word2[a:idx2 + 2] + (bitwise#cmp(a:word1[a:idx1 + 3], ADDTO4_temp) < 0)
-  let ADDTO4_temp = a:word1[1]
+  let ADDTO4_temp = a:word1[a:idx1 + 1]
   let a:word1[a:idx1 + 1] += a:word2[a:idx2 + 1] + (bitwise#cmp(a:word1[a:idx1 + 2], ADDTO4_temp2) < 0)
   let a:word1[a:idx1 + 0] += a:word2[a:idx2 + 0] + (bitwise#cmp(a:word1[a:idx1 + 1], ADDTO4_temp) < 0)
 endfunction
@@ -396,6 +396,7 @@ function! s:SHA384_512AddLength(context, length)
   else
     let a:context.Corrupted = 0
   endif
+  return a:context.Corrupted
 endfunction
 
 " Local Function Prototypes
