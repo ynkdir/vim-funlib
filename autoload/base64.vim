@@ -1,7 +1,7 @@
 " base64 codec
 " [The Base16, Base32, and Base64 Data Encodings]
 " http://www.ietf.org/rfc/rfc3548.txt
-" Last Change: 2010-08-01
+" Last Change: 2010-08-03
 " Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
 " License:      This file is placed in the public domain.
 
@@ -57,6 +57,12 @@ function! s:b64encode(bytes, table, pad)
 endfunction
 
 function! s:b64decode(b64, table, pad)
+  if len(a:b64) % 4 != 0
+    throw "TypeError: Incorrect padding"
+  endif
+  if len(a:b64) == 0
+    return []
+  endif
   let a2i = {}
   for i in range(len(a:table))
     let a2i[a:table[i]] = i
