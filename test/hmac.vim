@@ -1,4 +1,4 @@
-so <sfile>:p:h/test.vim
+source <sfile>:p:h/test.vim
 INFO hmac test
 INFO [Test Cases for HMAC-MD5 and HMAC-SHA-1]
 INFO http://www.ietf.org/rfc/rfc2202.txt

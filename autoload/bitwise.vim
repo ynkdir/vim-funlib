@@ -1,3 +1,10 @@
+" bitwise operator
+" Last Change:  2010-08-03
+" Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
+" License:      This file is placed in the public domain.
+
+let s:save_cpo = &cpo
+set cpo&vim
 
 function! bitwise#uint8(n)
   return bitwise#and(a:n, 0xFF)
@@ -152,3 +159,5 @@ let s:xor = [
       \ [0xF, 0xE, 0xD, 0xC, 0xB, 0xA, 0x9, 0x8, 0x7, 0x6, 0x5, 0x4, 0x3, 0x2, 0x1, 0x0]
       \ ]
 
+let &cpo = s:save_cpo
+unlet s:save_cpo

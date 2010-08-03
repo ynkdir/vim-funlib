@@ -1,4 +1,4 @@
-so <sfile>:p:h/test.vim
+source <sfile>:p:h/test.vim
 INFO md5 test
 OK hashlib#md5("") ==# "d41d8cd98f00b204e9800998ecf8427e"
 OK hashlib#md5("a") ==# "0cc175b9c0f1b6a831c399e269772661"

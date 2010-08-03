@@ -1,4 +1,4 @@
-so <sfile>:p:h/test.vim
+source <sfile>:p:h/test.vim
 INFO base64 test
 OK base64#b64encode("") ==# ""
 OK base64#b64encode([]) ==# ""
