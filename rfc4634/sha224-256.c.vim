@@ -431,7 +431,7 @@ function! s:SHA256FinalBits(context, message_bits, length)
 
   call s:SHA224_256AddLength(a:context, a:length)
   call s:SHA224_256Finalize(a:context, bitwise#uint8(
-        \ bitwise#or(bitwise#and(a:message_bits, masks[length]), markbit[length])))
+        \ bitwise#or(bitwise#and(a:message_bits, masks[a:length]), markbit[a:length])))
 
   return s:shaSuccess
 endfunction

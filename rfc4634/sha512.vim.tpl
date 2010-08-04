@@ -2,7 +2,7 @@
 " This is a port of rfc4634 sha512 function.
 " [US Secure Hash Algorithms (SHA and HMAC-SHA)]
 " http://www.ietf.org/rfc/rfc4634.txt
-" Last Change:  2010-08-01
+" Last Change:  2010-08-05
 " Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
 
 let s:save_cpo = &cpo
@@ -51,6 +51,13 @@ endfunction
 
 function s:sha512.copy()
   return deepcopy(self)
+endfunction
+
+function s:sha512.finalbits(bits, bitcount)
+  let err = s:SHA512FinalBits(self.context, a:bits, a:bitcount)
+  if err
+    throw printf("SHA512FinalBits Error %d", err)
+  endif
 endfunction
 
 " sha.h.vim {{{

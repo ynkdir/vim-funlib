@@ -2,7 +2,7 @@
 " This is a port of rfc4634 sha256 function.
 " [US Secure Hash Algorithms (SHA and HMAC-SHA)]
 " http://www.ietf.org/rfc/rfc4634.txt
-" Last Change:  2010-08-01
+" Last Change:  2010-08-05
 " Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
 
 let s:save_cpo = &cpo
@@ -51,6 +51,13 @@ endfunction
 
 function s:sha256.copy()
   return deepcopy(self)
+endfunction
+
+function s:sha256.finalbits(bits, bitcount)
+  let err = s:SHA256FinalBits(self.context, a:bits, a:bitcount)
+  if err
+    throw printf("SHA256FinalBits Error %d", err)
+  endif
 endfunction
 
 " sha.h.vim {{{
@@ -744,7 +751,7 @@ function! s:SHA256FinalBits(context, message_bits, length)
 
   call s:SHA224_256AddLength(a:context, a:length)
   call s:SHA224_256Finalize(a:context, bitwise#uint8(
-        \ bitwise#or(bitwise#and(a:message_bits, masks[length]), markbit[length])))
+        \ bitwise#or(bitwise#and(a:message_bits, masks[a:length]), markbit[a:length])))
 
   return s:shaSuccess
 endfunction
