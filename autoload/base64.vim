@@ -1,7 +1,7 @@
 " base64 codec
 " [The Base16, Base32, and Base64 Data Encodings]
 " http://www.ietf.org/rfc/rfc3548.txt
-" Last Change: 2010-08-03
+" Last Change:  2010-08-03
 " Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
 " License:      This file is placed in the public domain.
 
