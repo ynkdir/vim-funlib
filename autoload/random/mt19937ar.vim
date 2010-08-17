@@ -41,12 +41,12 @@
 "   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 "   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-function random#mt19937ar#srand(seed)
-  call s:init_genrand(a:seed)
+function random#mt19937ar#seed(x)
+  call s:init_by_array([a:x])
 endfunction
 
-function random#mt19937ar#rand()
-  return s:genrand_int32()
+function random#mt19937ar#random()
+  return s:genrand_res53()
 endfunction
 
 " for test
