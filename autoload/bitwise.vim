@@ -1,5 +1,5 @@
 " bitwise operator
-" Last Change:  2010-08-03
+" Last Change:  2010-08-17
 " Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
 " License:      This file is placed in the public domain.
 
@@ -12,6 +12,14 @@ endfunction
 
 function! bitwise#uint16(n)
   return bitwise#and(a:n, 0xFFFF)
+endfunction
+
+function! bitwise#uint32_to_float(n)
+  if a:n >= 0
+    return a:n * 1.0
+  else
+    return (a:n - 0x80000000) + 2147483648.0
+  endif
 endfunction
 
 " compare as unsigned int

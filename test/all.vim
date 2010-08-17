@@ -14,6 +14,7 @@ source <sfile>:p:h/md5.vim
 source <sfile>:p:h/sha1.vim
 source <sfile>:p:h/shatest.vim
 source <sfile>:p:h/urllib.vim
+source <sfile>:p:h/mt19937ar.vim
 redir END
 
 quit
