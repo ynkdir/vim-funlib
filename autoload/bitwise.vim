@@ -16,7 +16,7 @@ endfunction
 
 function! bitwise#uint32_to_float(n)
   if a:n >= 0
-    return a:n * 1.0
+    return a:n + 0.0
   else
     return (a:n - 0x80000000) + 2147483648.0
   endif

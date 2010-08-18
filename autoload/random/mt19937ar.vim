@@ -169,7 +169,7 @@ function! s:main()
   let buf = ""
   let buf .= "1000 outputs of genrand_int32()\n"
   for i in range(1000)
-    let buf .= printf("%10.0f ", bitwise#uint32_to_float(s:genrand_int32()))
+    let buf .= printf("%10u ", s:genrand_int32())
     if i % 5 == 4
       let buf .= "\n"
     endif
