@@ -33,7 +33,7 @@ function! s:rand()
   if s:next >= 0
     return (s:next / 65536) % 32768
   else
-    " MSB can be avoided
+    " MSB can be ignored
     return ((s:next - 0x80000000) / 65536) % 32768
   endif
 endfunction
