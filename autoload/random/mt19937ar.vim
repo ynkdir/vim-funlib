@@ -154,7 +154,7 @@ function! s:genrand_real2()
 endfunction
 
 function! s:genrand_real3()
-  return (bitwise#uint32_to_float(s:genrand_int32()) + 0.5)*(1.0/4294967296)
+  return (bitwise#uint32_to_float(s:genrand_int32()) + 0.5)*(1.0/4294967296.0)
 endfunction
 
 function! s:genrand_res53()
