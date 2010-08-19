@@ -21,7 +21,7 @@ function random#c99#seed(x)
 endfunction
 
 function random#c99#random()
-  return s:rand() / (s:RAND_MAX + 1.0)
+  return s:genrand_res53()
 endfunction
 
 let s:RAND_MAX = 32767
@@ -40,5 +40,24 @@ endfunction
 
 function! s:srand(seed)
   let s:next = a:seed
+endfunction
+
+" FIXME: quality?
+function! s:genrand_int32()
+  let a = s:rand() / 0x800 * 0x10000000
+  let b = s:rand() / 0x800 * 0x1000000
+  let c = s:rand() / 0x800 * 0x100000
+  let d = s:rand() / 0x800 * 0x10000
+  let e = s:rand() / 0x800 * 0x1000
+  let f = s:rand() / 0x800 * 0x100
+  let g = s:rand() / 0x800 * 0x10
+  let h = s:rand() / 0x800
+  return a + b + c + d + e + f + g + h
+endfunction
+
+function! s:genrand_res53()
+  let a = bitwise#uint32_to_float(bitwise#rshift(s:genrand_int32(), 5))
+  let b = bitwise#uint32_to_float(bitwise#rshift(s:genrand_int32(), 6))
+  return (a*67108864.0+b)*(1.0/9007199254740992.0)
 endfunction
 
