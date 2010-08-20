@@ -1,9 +1,11 @@
 
+" @param x Number (default=current time)
 function random#seed(...)
   let x = get(a:000, 0, localtime())
   call random#mt19937ar#seed(x)
 endfunction
 
+" @return Float [0.0, 1.0)
 function random#random()
   return random#mt19937ar#random()
 endfunction
