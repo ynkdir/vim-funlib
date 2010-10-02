@@ -125,62 +125,25 @@ function s:Inflate.read_custom_code()
   endfor
   let hc_code = self.create_custom_table(code_data)
 
-  let code_data = []
-  let lit = 0
-  while lit < hlit + 257
+  let lengths = []
+  while len(lengths) < hlit + 257 + hdist + 1
     let value = self.read_code(hc_code)
     if value <= 15
-      call add(code_data, [lit, value])
-      let lit += 1
+      call add(lengths, value)
     elseif value == 16
       let len = 3 + self.stream.readint(2)
-      for j in range(len)
-        call add(code_data, [lit, code_data[-1][1]])
-        let lit += 1
-      endfor
+      call extend(lengths, repeat([lengths[-1]], len))
     elseif value == 17
       let len = 3 + self.stream.readint(3)
-      for j in range(len)
-        call add(code_data, [lit, 0])
-        let lit += 1
-      endfor
+      call extend(lengths, repeat([0], len))
     elseif value == 18
       let len = 11 + self.stream.readint(7)
-      for j in range(len)
-        call add(code_data, [lit, 0])
-        let lit += 1
-      endfor
+      call extend(lengths, repeat([0], len))
     endif
   endwhile
+  let code_data = map(range(hlit + 257), '[v:val, lengths[v:val]]')
   let lit_code = self.create_custom_table(code_data)
-
-  let code_data = []
-  let lit = 0
-  while lit < hdist + 1
-    let value = self.read_code(hc_code)
-    if value <= 15
-      call add(code_data, [lit, value])
-      let lit += 1
-    elseif value == 16
-      let len = 3 + self.stream.readint(2)
-      for j in range(len)
-        call add(code_data, [lit, code_data[-1][1]])
-        let lit += 1
-      endfor
-    elseif value == 17
-      let len = 3 + self.stream.readint(3)
-      for j in range(len)
-        call add(code_data, [lit, 0])
-        let lit += 1
-      endfor
-    elseif value == 18
-      let len = 11 + self.stream.readint(7)
-      for j in range(len)
-        call add(code_data, [lit, 0])
-        let lit += 1
-      endfor
-    endif
-  endwhile
+  let code_data = map(range(hdist + 1), '[v:val, lengths[hlit + 257 + v:val]]')
   let dist_code = self.create_custom_table(code_data)
 
   return [lit_code, dist_code]
