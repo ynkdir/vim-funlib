@@ -16,6 +16,7 @@ source <sfile>:p:h/shatest.vim
 source <sfile>:p:h/urllib.vim
 source <sfile>:p:h/mt19937ar.vim
 source <sfile>:p:h/tgz.vim
+source <sfile>:p:h/zip.vim
 redir END
 
 quit
