@@ -1,5 +1,8 @@
 " [.ZIP File Format Specification]
 " http://www.pkware.com/documents/casestudies/APPNOTE.TXT
+" Last Change:  2010-10-02
+" Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
+" License:      This file is placed in the public domain.
 
 function unzip#unzip(data)
   return s:Unzip.new(a:data).unzip()
