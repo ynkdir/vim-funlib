@@ -67,6 +67,7 @@ function s:Unzip.read_entry()
   " Local file header
   let entry.signature = self.readint4()
   if entry.signature != s:LOCAL_FILE_HEADER_SIGNATURE
+    call self.back(4)
     return {}
   endif
   let entry.extract = self.readint2()
@@ -99,6 +100,10 @@ function s:Unzip.read_entry()
   endif
 
   return entry
+endfunction
+
+function s:Unzip.back(size)
+  let self.index -= a:size
 endfunction
 
 function s:Unzip.read(size)
