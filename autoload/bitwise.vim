@@ -32,16 +32,14 @@ function! bitwise#cmp(a, b)
 endfunction
 
 function! bitwise#lshift(a, n)
-  return a:a * s:k[a:n]
+  return a:n == 0 ? a:a : a:n > 31 ? 0 : a:a * s:pow2[a:n]
 endfunction
 
 function! bitwise#rshift(a, n)
-  let a = a:a < 0 ? a:a - 0x80000000 : a:a
-  let a = a / s:k[a:n]
-  if a:a < 0
-    let a += 0x40000000 / s:k[a:n - 1]
-  endif
-  return a
+  return a:n == 0 ? a:a : a:n > 31 ? 0 :
+        \ a:a < 0
+        \   ? (a:a - 0x80000000) / s:pow2[a:n] + 0x40000000 / s:pow2[a:n - 1]
+        \   : a:a / s:pow2[a:n]
 endfunction
 
 function! bitwise#not(a)
@@ -99,7 +97,7 @@ function! bitwise#xor(a, b)
   return r
 endfunction
 
-let s:k = [
+let s:pow2 = [
       \ 0x1,        0x2,        0x4,        0x8,
       \ 0x10,       0x20,       0x40,       0x80,
       \ 0x100,      0x200,      0x400,      0x800,
