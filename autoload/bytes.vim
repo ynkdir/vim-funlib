@@ -67,7 +67,7 @@ function! bytes#readfile(filename)
   return bytes
 endfunction
 
-function! bytes#writefile(filename, bytes)
+function! bytes#writefile(bytes, filename)
   let lines = bytes#bytes2lines(a:bytes)
   if writefile(lines, a:filename, 'b') != 0
     throw "Can't write file"
@@ -84,7 +84,7 @@ function! bytes#readfilexxd(filename)
   return bytes
 endfunction
 
-function! bytes#writefilexxd(filename, bytes)
+function! bytes#writefilexxd(bytes, filename)
   let bytes = (type(a:bytes) == type("") ? bytes#str2bytes(a:bytes) : a:bytes)
   let hex = bytes#bytes2hex(bytes)
   call system('xxd -p -r - ' . fnameescape(a:filename), hex)
