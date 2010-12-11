@@ -1,7 +1,7 @@
 
 " @param x Number (default=current time)
 function random#seed(...)
-  let x = get(a:000, 0, localtime())
+  let x = get(a:000, 0, float2nr(fmod(str2float(reltimestr(reltime())) * 256, 2147483648.0)))
   call random#mt19937ar#seed(x)
 endfunction
 

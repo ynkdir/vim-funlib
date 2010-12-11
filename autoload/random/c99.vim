@@ -31,12 +31,7 @@ let s:next = 1
 
 function! s:rand()
   let s:next = s:next * 1103515245 + 12345
-  if s:next >= 0
-    return (s:next / 65536) % 32768
-  else
-    " MSB can be ignored
-    return ((s:next - 0x80000000) / 65536) % 32768
-  endif
+  return ((s:next < 0 ? s:next - 0x80000000 : s:next) / 65536) % 32768
 endfunction
 
 function! s:srand(seed)
