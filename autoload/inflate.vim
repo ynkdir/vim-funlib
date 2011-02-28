@@ -2,7 +2,7 @@
 " http://www.ietf.org/rfc/rfc1951.txt
 " [DEFLATE] (description in Japanese)
 " http://www.river.sannet.ne.jp/yuui/fileformat/deflate1.html
-" Last Change:  2010-10-02
+" Last Change:  2011-03-01
 " Maintainer:   Yukihiro Nakadaira <yukihiro.nakadaira@gmail.com>
 " License:      This file is placed in the public domain.
 
@@ -238,7 +238,7 @@ endfunction
 function s:Bitstream.readbytes(bytesize)
   call self.skip_to_byte_align()
   let byteindex = self.bitindex / 8
-  let bytes = self.data[ byteindex : byteindex + bytesize - 1 ]
+  let bytes = self.data[ byteindex : byteindex + a:bytesize - 1 ]
   let self.bitindex += a:bytesize * 8
   return bytes
 endfunction
